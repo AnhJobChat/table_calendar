@@ -15,8 +15,8 @@ class _CellWidget extends StatelessWidget {
   final CalendarStyle calendarStyle;
 
   const _CellWidget({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
     this.isUnavailable = false,
     this.isSelected = false,
     this.isToday = false,
@@ -24,10 +24,8 @@ class _CellWidget extends StatelessWidget {
     this.isOutsideMonth = false,
     this.isHoliday = false,
     this.isEventDay = false,
-    @required this.calendarStyle,
-  })  : assert(text != null),
-        assert(calendarStyle != null),
-        super(key: key);
+    required this.calendarStyle,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +42,12 @@ class _CellWidget extends StatelessWidget {
   }
 
   Decoration _buildCellDecoration() {
-    if (isSelected &&
-        calendarStyle.renderSelectedFirst &&
-        calendarStyle.highlightSelected) {
-      return BoxDecoration(
-          shape: BoxShape.circle, color: calendarStyle.selectedColor);
+    if (isSelected && calendarStyle.renderSelectedFirst && calendarStyle.highlightSelected) {
+      return BoxDecoration(shape: BoxShape.circle, color: calendarStyle.selectedColor);
     } else if (isToday && calendarStyle.highlightToday) {
-      return BoxDecoration(
-          shape: BoxShape.circle, color: calendarStyle.todayColor);
+      return BoxDecoration(shape: BoxShape.circle, color: calendarStyle.todayColor);
     } else if (isSelected && calendarStyle.highlightSelected) {
-      return BoxDecoration(
-          shape: BoxShape.circle, color: calendarStyle.selectedColor);
+      return BoxDecoration(shape: BoxShape.circle, color: calendarStyle.selectedColor);
     } else {
       return BoxDecoration(shape: BoxShape.circle);
     }
@@ -63,9 +56,7 @@ class _CellWidget extends StatelessWidget {
   TextStyle _buildCellTextStyle() {
     if (isUnavailable) {
       return calendarStyle.unavailableStyle;
-    } else if (isSelected &&
-        calendarStyle.renderSelectedFirst &&
-        calendarStyle.highlightSelected) {
+    } else if (isSelected && calendarStyle.renderSelectedFirst && calendarStyle.highlightSelected) {
       return calendarStyle.selectedStyle;
     } else if (isToday && calendarStyle.highlightToday) {
       return calendarStyle.todayStyle;
